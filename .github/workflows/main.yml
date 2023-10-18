@@ -1,0 +1,28 @@
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build and deploy
+      run: |
+        mkdir -p docs
+        cp -r begin/webroot/* docs/
+      # Wenn du weitere Anpassungen benötigst, kannst du sie hier vornehmen
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        git commit -m "Deploy to GitHub Pages"
+        git push
