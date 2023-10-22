@@ -1,9 +1,9 @@
-name: Sync from GitLab
+name: Sync from GitLab to GitHub
 
 on:
   push:
     branches:
-      - main  # Der Branch, bei dem Änderungen ausgelöst werden sollen
+      - main  # Der Branch in GitLab, bei dem Änderungen ausgelöst werden sollen
 
 jobs:
   sync:
@@ -13,11 +13,18 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2  # Git-Repository von GitHub abrufen
 
-    - name: Copy from GitLab
+    - name: Copy from GitLab to GitHub
       run: |
+        # GitLab-Repository klonen
         git clone https://gitlab.com/einsendeaufgabe/952922Einsendeaufgaben.git
-        cd 952922Einsendeaufgaben  # Der Name des GitLab-Repositorys
+
+        # In das GitLab-Repository wechseln
+        cd 952922Einsendeaufgaben
+
+        # Ein Remote für das GitHub-Repository hinzufügen
         git remote add github_repo https://github.com/ironessa/952922Einsendeaufgaben.git
+
+        # Die Änderungen auf den GitHub-Branch (main) pushen
         git push github_repo main
       env:
         DEIN_GITLAB_REPO_NAME: 952922Einsendeaufgaben
