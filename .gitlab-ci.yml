@@ -47,3 +47,9 @@ deploy-job:      # This job runs in the deploy stage.
   script:
     - echo "Deploying application..."
     - echo "Application successfully deployed."
+    
+sync-with-github-job:
+  stage: sync_with_github
+  script:
+    - git remote add github_repo https://github.com/ironessa/952922Einsendeaufgaben.git
+    - git push github_repo master  # Hier wird der Branch "master" in dein GitHub-Repository synchronisiert
