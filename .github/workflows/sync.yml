@@ -20,9 +20,7 @@ jobs:
 
     - name: Copy from GitLab to GitHub
       run: |
-        git clone https://gitlab.com/einsendeaufgabe/952922Einsendeaufgaben.git
+        git clone https://oauth2:${{ secrets.GITLAB_TOKEN }}@gitlab.com/einsendeaufgabe/952922Einsendeaufgaben.git
         cd 952922Einsendeaufgaben
         git remote add github_repo https://github.com/ironessa/952922Einsendeaufgaben.git
         git push github_repo main
-      env:
-        DEIN_GITLAB_REPO_NAME: 952922Einsendeaufgaben
