@@ -10,21 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
+
     - name: Checkout code
       uses: actions/checkout@v2  # Git-Repository von GitHub abrufen
 
     - name: Copy from GitLab to GitHub
       run: |
-        # GitLab-Repository klonen
         git clone https://gitlab.com/einsendeaufgabe/952922Einsendeaufgaben.git
-
-        # In das GitLab-Repository wechseln
         cd 952922Einsendeaufgaben
-
-        # Ein Remote für das GitHub-Repository hinzufügen
         git remote add github_repo https://github.com/ironessa/952922Einsendeaufgaben.git
-
-        # Die Änderungen auf den GitHub-Branch (main) pushen
         git push github_repo main
       env:
         DEIN_GITLAB_REPO_NAME: 952922Einsendeaufgaben
