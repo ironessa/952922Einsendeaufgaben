@@ -1,0 +1,23 @@
+name: Sync from GitLab
+
+on:
+  push:
+    branches:
+      - main  # Der Branch, bei dem Änderungen ausgelöst werden sollen
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # Git-Repository von GitHub abrufen
+
+    - name: Copy from GitLab
+      run: |
+        git clone https://gitlab.com/einsendeaufgabe/952922Einsendeaufgaben.git
+        cd 952922Einsendeaufgaben  # Der Name des GitLab-Repositorys
+        git remote add github_repo https://github.com/ironessa/952922Einsendeaufgaben.git
+        git push github_repo main
+      env:
+        DEIN_GITLAB_REPO_NAME: 952922Einsendeaufgaben
