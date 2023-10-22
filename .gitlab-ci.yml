@@ -52,4 +52,4 @@ sync-with-github-job:  # Der Synchronisations-Job folgt nach der "deploy"-Stage
   stage: deploy  # Hier verwenden wir die "deploy"-Stage, da du den Synchronisations-Job nach der "deploy"-Stage ausführen möchtest
   script:
     - git remote add github_repo https://github.com/ironessa/952922Einsendeaufgaben.git
-    - git push github_repo master
+    - git push github_repo main
